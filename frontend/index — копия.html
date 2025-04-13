@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YouTube Subs Betting</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+  <div class="container mx-auto p-4">
+
+    <!-- Tabs -->
+    <div class="flex space-x-2 justify-center mb-6">
+      <button id="tab-active" class="tab-button bg-gray-800 px-4 py-2 rounded-t-lg">Активные ставки</button>
+      <button id="tab-create" class="tab-button bg-gray-700 px-4 py-2 rounded-t-lg">Создание ставки</button>
+      <button id="tab-closed" class="tab-button bg-gray-700 px-4 py-2 rounded-t-lg">Закрытые ставки</button>
+    </div>
+
+    <!-- Tab Contents -->
+    <div id="tab-contents" class="tab-content-container">
+      
+      <!-- Активные ставки -->
+      <div id="content-active" class="tab-content flex gap-4">
+        <!-- Левая колонка -->
+        <div class="w-2/3 bg-gray-800 p-4 rounded-lg">
+          <h2 class="text-xl font-bold mb-4">Активные ставки</h2>
+          <ul id="bet-list" class="space-y-2">
+            <p class="text-gray-400">Ставки скоро появятся...</p>
+          </ul>
+        </div>
+
+        <!-- Правая колонка -->
+        <div id="bet-details" class="w-1/3 bg-gray-800 p-4 rounded-lg hidden">
+          <h2 class="text-lg font-bold mb-2">Инфо о ставке</h2>
+          <p><strong>Канал:</strong> <span id="detail-channel"></span></p>
+          <p><strong>Время (мин):</strong> <span id="detail-time"></span></p>
+          <p><strong>Цель:</strong> <span id="detail-target"></span> подписчиков</p>
+          <p><strong>Коэффициент:</strong> <span id="detail-coef">1.5</span></p>
+          <p><strong>Максимальная ставка:</strong> <span id="max-bet">0.1</span> ETH</p>
+
+          <div class="mt-4">
+            <label for="stake-amount" class="block text-sm mb-1">Введите сумму ставки (ETH):</label>
+            <input id="stake-amount" type="number" step="0.0001" min="0" class="w-full px-3 py-2 rounded bg-gray-700 text-white">
+          </div>
+
+          <div class="mt-4 space-x-2">
+            <button id="bet-up" class="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded">Наберёт</button>
+            <button id="bet-down" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded">Не наберёт</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Создание ставки -->
+      <div id="content-create" class="tab-content bg-gray-800 p-4 rounded-b-lg hidden">
+        <h2 class="text-xl font-bold mb-4">Создание ставки</h2>
+        <form id="create-bet-form" class="space-y-4">
+          <div>
+            <label for="channel-id" class="block mb-1">ID YouTube канала</label>
+            <input type="text" id="channel-id" required class="w-full px-3 py-2 rounded bg-gray-700 text-white">
+          </div>
+          <div>
+            <label for="duration" class="block mb-1">Длительность (в минутах)</label>
+            <input type="number" id="duration" required class="w-full px-3 py-2 rounded bg-gray-700 text-white">
+          </div>
+          <div>
+            <label for="target-subs" class="block mb-1">Цель по подписчикам</label>
+            <input type="number" id="target-subs" required class="w-full px-3 py-2 rounded bg-gray-700 text-white">
+          </div>
+          <button type="submit" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Создать ставку</button>
+        </form>
+      </div>
+
+      <!-- Закрытые ставки -->
+      <div id="content-closed" class="tab-content bg-gray-800 p-4 rounded-b-lg hidden">
+        <h2 class="text-xl font-bold mb-4">Закрытые ставки</h2>
+        <div id="closed-bets-list" class="space-y-2 text-gray-400">
+          Здесь должны показываться ставки, которые уже завершены.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Вкладки JS -->
+  <script>
+    const tabs = {
+      'tab-active': 'content-active',
+      'tab-create': 'content-create',
+      'tab-closed': 'content-closed'
+    };
+
+    Object.keys(tabs).forEach(tabId => {
+      document.getElementById(tabId).addEventListener('click', () => {
+        Object.keys(tabs).forEach(id => {
+          document.getElementById(id).classList.remove('bg-gray-800');
+          document.getElementById(id).classList.add('bg-gray-700');
+          document.getElementById(tabs[id]).classList.add('hidden');
+        });
+        document.getElementById(tabId).classList.remove('bg-gray-700');
+        document.getElementById(tabId).classList.add('bg-gray-800');
+        document.getElementById(tabs[tabId]).classList.remove('hidden');
+      });
+    });
+  </script>
+
+  <script src="app.js"></script>
+</body>
+</html>
