@@ -1,0 +1,77 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "C:\\всякое\\youtube_subs_betting\\contracts\\BettingContract.sol": {
+      "lastModificationDate": 1744548180290,
+      "contentHash": "55b6001ac813a3ed6579a5341ccf45c8",
+      "sourceName": "contracts/BettingContract.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.19"
+      ],
+      "artifacts": [
+        "BettingContract"
+      ]
+    },
+    "C:\\всякое\\youtube_subs_betting\\contracts\\BettingFactory.sol": {
+      "lastModificationDate": 1744548183262,
+      "contentHash": "3e15c3ce89be535b5be7164b835cd004",
+      "sourceName": "contracts/BettingFactory.sol",
+      "solcConfig": {
+        "version": "0.8.19",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./BettingContract.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "BettingFactory"
+      ]
+    }
+  }
+}
